@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Library App System</title>
+
+</head>
+
+<body>
+
+    <div class="card">
+        <h1 class="text-center"><span class="badge bg-secondary">Library App</span></h1>
+        <h2 class="text-center">Login</h2>
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+        <form (ngSubmit)="login()">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password"
+                    required>
+            </div>
+            <button type="submit" class="btn btn-danger btn-block mb-4">Login</button>
+        </form>
+        <div class="text-center">
+            <p>Don't have an account? <a (click)="registerRedirect()">Register here</a></p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

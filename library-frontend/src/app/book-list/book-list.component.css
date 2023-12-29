@@ -1,0 +1,16 @@
+.success-snackbar {
+    background-color: #4caf50;
+
+}
+
+.error-snackbar {
+    background-color: #f44336;
+
+}
+
+.warning-snackbar {
+    background-color: #ff9800;
+
+}
+
+@import '~bootstrap/dist/css/bootstrap.min.css';

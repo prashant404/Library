@@ -1,0 +1,79 @@
+<div class="container mt-3">
+    <!-- Search -->
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search for books..." [(ngModel)]="searchQuery">
+        <div class="input-group-append">
+            <button class="btn btn btn-outline-danger" type="button" (click)="searchBooks()">Search</button>
+        </div>
+    </div>
+
+    <!-- Add New Book Button -->
+    <button class="btn btn-danger mb-3" (click)="openAddBookModal(addBookModal)">Add Book</button>
+
+    <!-- Add Book Modal -->
+    <ng-template #addBookModal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title">Add New Book</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modalReference.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <!-- Add Book Form -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" class="form-control" id="title" [(ngModel)]="newBook.name">
+            </div>
+
+            <div class="mb-3">
+                <label for="author" class="form-label">Author:</label>
+                <input type="text" class="form-control" id="author" [(ngModel)]="newBook.author">
+            </div>
+
+            <div class="mb-3">
+                <label for="genre" class="form-label">Genre:</label>
+                <input type="text" class="form-control" id="genre" [(ngModel)]="newBook.genre">
+            </div>
+
+            <div class="mb-3">
+                <label for="author" class="form-label">Description:</label>
+                <input type="textarea" class="form-control" id="Description" [(ngModel)]=" newBook.description">
+            </div>
+
+            <div class="mb-3">
+                <label for="ratings" class="form-label">Ratings:</label>
+                <input type="number" class="form-control" id="ratings" [(ngModel)]="newBook.rating" max="5">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+                (click)="modalReference.dismiss('Cancel click')">Close</button>
+            <button type="button" class="btn btn-success" (click)="postBook()">Add Book</button>
+        </div>
+    </ng-template>
+
+    <h2 class="text-center mb-4">All Books</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of books">
+                <td (click)="openBookDetailModal(book)">{{ book.name }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.genre }}</td>
+                <td>
+                    <button class="btn btn-danger" [disabled]="!book.isBookAvailable" (click)="borrowBook(book.id)">
+                        Borrow
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
